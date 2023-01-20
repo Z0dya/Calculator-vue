@@ -1,4 +1,5 @@
 # testing-calculator
+How it looks like - https://calculator-vue-tau.vercel.app/
 
 ## Project setup
 ```

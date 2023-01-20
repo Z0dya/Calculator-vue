@@ -51,49 +51,55 @@ export default {
             }
         },
         dot() {
-            // если длинна больше 0 И не содержит точку то добавляем точку
-            // if (this.answer.length > 0 && !this.answer.includes('.')) {
-            //     this.answer = this.answer + '.';
-            // }
             if (this.answer.length > 0 && this.dotEnable) {
                 this.answer = this.answer + '.';
                 this.dotEnable = false;
             }
+            // если длинна больше 0 И не содержит точку то добавляем точку
+            // if (this.answer.length > 0 && !this.answer.includes('.')) {
+            //     this.answer = this.answer + '.';
+            // }
         },
         // функция нажатия на кнопки
         clickedPanel(num) {
-            // если true то очищаем результат и переводим переменную в false
-            if (this.resetNum) {
-                this.answer = '';
-                this.resetNum = false;
-            } else {
-                if (this.answer.includes('%')) {
-                    this.equal();
+            try {
+                // если true то очищаем результат и переводим переменную в false
+                if (this.resetNum) {
+                    this.answer = '';
+                    this.resetNum = false;
                 } else {
-                    // если 1 символ равен любому из операторов, то очищаем оператор и добавляем нажатую цифру
-                    if (
-                        this.answer[0] == '+' ||
-                        this.answer[0] == '-' ||
-                        this.answer[0] == '*' ||
-                        this.answer[0] == '/' ||
-                        this.answer[0] == '%' ||
-                        this.answer[0] == '.'
-                    ) {
-                        this.answer = '' + num;
+                    if (this.answer.includes('%')) {
+                        this.equal();
                     } else {
-                        if (this.answer.match(/[\+\-\*\/]/gm)?.length > 0) {
-                            this.dotEnable = true;
-                        }
-                        // если операторов больше 0 и операторы содержат строку то вызываем функцию подсчета (чтобы нельзя было вводить больше 1 оператора)
-                        if (this.answer.match(/[\+\-\*\/]/gm)?.length > 0 && this.operators.includes(num)) {
-                            this.equal();
-                        }
-                        // иначе результат равен результат + нажатая кнопка (нажали 2 = 2, нажали 6 = 26)
-                        else {
-                            this.answer = this.answer + num;
+                        // если 1 символ равен любому из операторов, то очищаем оператор и добавляем нажатую цифру
+                        if (
+                            this.answer[0] == '+' ||
+                            this.answer[0] == '-' ||
+                            this.answer[0] == '*' ||
+                            this.answer[0] == '/' ||
+                            this.answer[0] == '%' ||
+                            this.answer[0] == '.'
+                        ) {
+                            this.answer = '' + num;
+                        } else {
+                            // если операторов больше 0
+                            if (this.answer.match(/[\+\-\*\/]/gm)?.length > 0) {
+                                this.dotEnable = true;
+                            }
+                            // если операторов больше 0 и операторы содержат строку то вызываем функцию подсчета (чтобы нельзя было вводить больше 1 оператора)
+                            if (this.answer.match(/[\+\-\*\/]/gm)?.length > 0 && this.operators.includes(num)) {
+                                this.equal();
+                            }
+                            // иначе результат равен результат + нажатая кнопка (нажали 2 = 2, нажали 6 = 26)
+                            else {
+                                this.answer = this.answer + num;
+                            }
                         }
                     }
                 }
+            } catch (error) {
+                alert(error);
+                console.log(error);
             }
         },
     },
