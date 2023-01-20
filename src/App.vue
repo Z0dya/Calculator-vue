@@ -1,7 +1,5 @@
 <template>
-    <div id="app">
-        <calculator-app />
-    </div>
+    <calculator-app />
 </template>
 
 <script>
@@ -9,11 +7,16 @@ import calculatorApp from './components/calculatorApp.vue';
 
 export default {
     components: { calculatorApp },
+    name: 'App',
 };
 </script>
 
 <style>
 html {
-    background-color: #2f2f2f;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    height: 100%;
 }
 </style>
